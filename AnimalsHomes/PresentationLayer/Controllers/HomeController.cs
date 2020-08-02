@@ -34,12 +34,12 @@ namespace PresentationLayer.Controllers
             return View(result);
         }
 
-        public ActionResult HomesData()
+        public PartialViewResult HomesData()
         {
             var result = new GetAllHomesViewModel();
             var getHome = _animalManager.GetAllHomes();
             result.Homes = _mapper.Map<List<HomeViewModel>>(getHome);
-            return View(result);
+            return PartialView(result);
         }
 
         public ActionResult About()
