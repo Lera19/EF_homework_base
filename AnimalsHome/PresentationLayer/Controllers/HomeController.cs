@@ -20,7 +20,9 @@ namespace PresentationLayer.Controllers
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<AnimalModel, AnimalViewModel>();
+                cfg.CreateMap<AnimalModel, AnimalHomeViewModel>();
                 cfg.CreateMap<HomeModel, HomeViewModel>();
+                cfg.CreateMap<HomeModel, AnimalHomeViewModel>();
             });
             _mapper = new Mapper(config);
         }
@@ -34,12 +36,20 @@ namespace PresentationLayer.Controllers
             return View(result);
         }
 
-        public ActionResult HomesData()
+        public ActionResult HomesDataPartialView()
         {
-            var result = new GetAllHomesViewModel();
+            var result = new AnimalHomeCollectionViewModel();
             var getHome = _animalManager.GetAllHomes();
-            result.Homes = _mapper.Map<List<HomeViewModel>>(getHome);
+            result.ListAllModels = _mapper.Map<List<AnimalHomeViewModel>>(getHome);
             return PartialView(result);
+        }
+
+        public ActionResult AnimalsDataPartialView()
+        {
+            var result = new AnimalHomeCollectionViewModel();
+            var getAnimal = _animalManager.GetAllAnimals();
+            result.ListAllModels = _mapper.Map<List<AnimalHomeViewModel>>(getAnimal);
+            return PartialView("HomesDataPartialView",result);
         }
 
         public ActionResult About()

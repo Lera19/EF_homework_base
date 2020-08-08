@@ -1,0 +1,14 @@
+﻿@model PresentationLayer.Models.AnimalHomeCollectionViewModel
+@*@{
+    ViewBag.Title = "Data Home";
+}*@
+<h1>Houses Partial View</h1>
+<div>
+    @foreach(var item in Model.ListAllModels)
+    {
+        <div>
+            @item.Id
+            @item.Name
+        </div>
+    }
+</div>
