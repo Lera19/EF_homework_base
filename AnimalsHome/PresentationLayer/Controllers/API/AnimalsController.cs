@@ -1,25 +1,24 @@
 ﻿using AutoMapper;
 using BL;
+using BL.Interface;
 using BL.Model;
 using PresentationLayer.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace PresentationLayer.Controllers.API
 {
     public class AnimalsController : ApiController
     {
-        private readonly AnimalsManager _animalManager;
+        public AnimalsController() { }
+        private readonly IAnimalsManager _animalManager;
         private readonly Mapper _mapper;
-        public AnimalsController()
+        public AnimalsController(IAnimalsManager animalsManager)
         {
 
 
-            _animalManager = new AnimalsManager();
+            _animalManager = animalsManager;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -27,15 +26,7 @@ namespace PresentationLayer.Controllers.API
             });
             _mapper = new Mapper(config);
         }
-        // GET api/<controller>
-        //public IEnumerable<AnimalViewModel> Get()
-        //{
-        //    var animal = _animalManager.GetAllAnimals();
-        //    var result = _mapper.Map<List<AnimalViewModel>>(animal);
-        //    return result;
-        //}
-
-        // GET api/<controller>/5
+       
         public string Get()
         {
             var result = new GetAllAnimalsViewModel();

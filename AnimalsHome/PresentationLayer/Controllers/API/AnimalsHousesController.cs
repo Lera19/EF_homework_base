@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL;
+using BL.Interface;
 using BL.Model;
 using PresentationLayer.Models;
 using System.Collections.Generic;
@@ -9,13 +10,14 @@ namespace PresentationLayer.Controllers.API
 {
     public class AnimalsHousesController : Controller
     {
-        private readonly AnimalsManager _animalManager;
+        public AnimalsHousesController() { }
+        private readonly IAnimalsManager _animalManager;
         private readonly Mapper _mapper;
-        public AnimalsHousesController()
+        public AnimalsHousesController(IAnimalsManager animalsManager)
         {
 
 
-            _animalManager = new AnimalsManager();
+            _animalManager = animalsManager;
 
             var config = new MapperConfiguration(cfg =>
             {

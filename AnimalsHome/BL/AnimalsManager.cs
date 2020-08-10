@@ -1,19 +1,21 @@
 ﻿using AutoMapper;
+using BL.Interface;
 using BL.Model;
-using DAL;
+using DAL.Interface;
 using DAL.Model;
 using System.Collections.Generic;
 
 namespace BL
 {
-    public class AnimalsManager
+    public class AnimalsManager :IAnimalsManager
     {
-        public readonly AnimalsRepository _repository;
+        public readonly IAnimalsRepository _repository;
+
         public readonly Mapper _mapper;
 
-        public AnimalsManager()
+        public AnimalsManager(IAnimalsRepository repository)
         {
-            _repository = new AnimalsRepository();
+            _repository = repository;
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Animal, AnimalModel>();

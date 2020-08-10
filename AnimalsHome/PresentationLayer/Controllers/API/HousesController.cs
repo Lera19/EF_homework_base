@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BL;
+using BL.Interface;
 using BL.Model;
 using PresentationLayer.Models;
 using System.Collections.Generic;
@@ -9,13 +10,14 @@ namespace PresentationLayer.Controllers.API
 {
     public class HousesController : ApiController
     {
-        private readonly AnimalsManager _animalManager;
+        public HousesController() { }
+        private readonly IAnimalsManager _animalManager;
         private readonly Mapper _mapper;
-        public HousesController()
+        public HousesController(IAnimalsManager animalsManager)
         {
 
 
-            _animalManager = new AnimalsManager();
+            _animalManager = animalsManager;
 
             var config = new MapperConfiguration(cfg =>
             {
@@ -23,15 +25,7 @@ namespace PresentationLayer.Controllers.API
             });
             _mapper = new Mapper(config);
         }
-        // GET api/<controller>
-        //public IEnumerable<HomeViewModel> Get()
-        //{
-        //    var houses = _animalManager.GetAllHomes();
-        //    var result = _mapper.Map<List<HomeViewModel>>(houses);
-        //    return result;
-        //}
 
-        // GET api/<controller>/5
         public string Get()
         {
             var result = new GetAllHomesViewModel();

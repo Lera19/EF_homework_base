@@ -1,4 +1,15 @@
-﻿td, th{
+﻿div .registration {
+    position: absolute;
+    right: 125px;
+    top: 0px;
+    height: 100%;
+    font-size: 20px;
+    padding: 6px;
+    margin: 3px;
+}
+
+
+td, th{
     padding: 3px;
     border: 1px solid maroon;
     text-align: left;

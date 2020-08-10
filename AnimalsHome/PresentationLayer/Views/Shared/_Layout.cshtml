@@ -25,8 +25,21 @@
                     <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
                     <li>@Html.ActionLink("Информация", "About", "Home")</li>
                     <li>@Html.ActionLink("Связаться", "Contact", "Home")</li>
-                    
+
                 </ul>
+                <div class="registration">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <strong>@Html.Encode(User.Identity.Name)</strong>
+                        @Html.ActionLink("LogOut", "LogOut", "Account")
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Register", "Register", "Account")
+                        <span> | </span>
+                        @Html.ActionLink("LogIn", "LogIn", "Account")
+                    }
+                </div>
                 <button class="theme-button" type="button">Изменить тему</button>
             </div>
         </div>
